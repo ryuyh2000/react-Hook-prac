@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useReducer } from "react";
+import UseReducer from "./UseReducer";
 
-function App() {
-  return <div>asdf</div>;
-}
+const App = () => {
+  return (
+    <>
+      <h1>useReducer</h1>
+      <UseReducer />
+      <hr />
+    </>
+  );
+};
 
 export default App;
