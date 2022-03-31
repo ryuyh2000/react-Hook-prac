@@ -2,15 +2,9 @@ import React from "react";
 import UseReducer from "./UseReducer/UseReducer";
 import UseReducerApplication from "./UseReducer/UseReducerApplication";
 import UseContext from "./UseContext/UseContext";
-import { ThemContext } from "./UseContext/Context";
+import { ThemContext, basicData } from "./UseContext/Context";
 
 const App = () => {
-  const [boo, setBoo] = React.useState(false);
-
-  const setBoolean = () => {
-    setBoo(!boo);
-  };
-
   return (
     <>
       <h1>useReducer</h1>
@@ -18,9 +12,13 @@ const App = () => {
       <UseReducerApplication />
       <hr />
       <h1>useContext</h1>
-      <ThemContext.Provider value={{ boo, setBoo: setBoolean }}>
+      <ThemContext.Provider
+        value={{ boolean: basicData.boolean, name: basicData.name }}
+      >
         <UseContext />
       </ThemContext.Provider>
+      <hr />
+
     </>
   );
 };

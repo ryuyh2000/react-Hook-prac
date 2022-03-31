@@ -1,8 +1,9 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 
-const asdf = {
-  setBoo: () => {},
-  boo: false,
-};
+export const basicData ={
+  boolean:true,
+  name:'찬호'
+}
 
-export const ThemContext = createContext(asdf);
+
+export const ThemContext = createContext(basicData);

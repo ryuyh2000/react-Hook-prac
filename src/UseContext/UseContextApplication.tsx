@@ -1,17 +1,37 @@
 import React from "react";
 import { ThemContext } from "./Context";
 
-const UseContextApplication = () => {
-  let { setBoo, boo } = React.useContext(ThemContext);
+const reducer = (state: string, action: string): string => {
+  if (action === "찬호") {
+    state = "찬호";
+    return state;
+  } else {
+    state = "인욱";
+    return state;
+  }
+};
 
-  const changeBoolean = () => {
-    setBoo();
-  };
+const UseContextApplication = () => {
+  const { boolean, name } = React.useContext(ThemContext);
+  const [boo, setBoo] = React.useState(boolean);
+  const [sdaf, dispatch] = React.useReducer(reducer, name);
 
   return (
     <>
+      <button
+        onClick={() => {
+          setBoo(!boo);
+          if (boo) {
+            dispatch("인욱");
+          } else {
+            dispatch("찬호");
+          }
+        }}
+      >
+        change info
+      </button>
       {String(boo)}
-      <button onClick={changeBoolean}>Change Boolean</button>
+      {sdaf}
     </>
   );
 };
