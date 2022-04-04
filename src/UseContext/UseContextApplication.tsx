@@ -14,7 +14,7 @@ const reducer = (state: string, action: string): string => {
 const UseContextApplication = () => {
   const { boolean, name } = React.useContext(ThemContext);
   const [boo, setBoo] = React.useState(boolean);
-  const [sdaf, dispatch] = React.useReducer(reducer, name);
+  const [state, dispatch] = React.useReducer(reducer, name);
 
   return (
     <>
@@ -31,7 +31,7 @@ const UseContextApplication = () => {
         change info
       </button>
       {String(boo)}
-      {sdaf}
+      {state}
     </>
   );
 };
