@@ -1,25 +1,56 @@
 import React from "react";
+import Recording from "./Recording";
 
-const delayCal1 = (num: number): number => {
+interface funcType {
+  num: number;
+  time: string;
+}
+
+const getTime = () => {
+  const time = new Date();
+  const hour = time.getHours();
+  const min = time.getMinutes();
+  const sec = time.getSeconds();
+  const millie = time.getMilliseconds();
+
+  return `${hour}:${min}:${sec}:${millie}`;
+};
+
+const delayCal1 = (num: number): funcType => {
   for (let i = 0; i < 999999999; i++) {}
-  return num + 1;
+  const time = getTime();
+  const object = {
+    num: num + 1,
+    time,
+  };
+
+  return object;
 };
 
-const notDelayCal1 = (num: number): number => {
-  return num + 1;
+const notDelayCal1 = (num: number): funcType => {
+  const time = getTime();
+  const object = {
+    num: num + 1,
+    time,
+  };
+
+  return object;
 };
+
+//클릭 기록 출력 기록
 
 const UseMemo = () => {
   const [delayNumber, setdelayNumber] = React.useState(0);
   const [notDelayNumber, setnotDelayNumber] = React.useState(0);
 
+  const [clickRec, setClickRec] = React.useState("");
+  const [delayclickRec, setDelayClickRec] = React.useState("");
+
   const memoDelay = React.useMemo(() => {
     return delayCal1(delayNumber);
   }, [delayNumber]);
 
-  const memoNotDelay = React.useMemo(() => {
-    return notDelayCal1(notDelayNumber);
-  }, [notDelayNumber]);
+  const memoNotDelay = notDelayCal1(notDelayNumber);
 
   return (
     <>
@@ -27,6 +58,7 @@ const UseMemo = () => {
       <button
         onClick={() => {
           setdelayNumber(delayNumber + 1);
+          setDelayClickRec(getTime);
         }}
       >
         delay :+1
@@ -35,13 +67,26 @@ const UseMemo = () => {
       <button
         onClick={() => {
           setnotDelayNumber(notDelayNumber + 1);
+          setClickRec(getTime);
         }}
       >
         not delay :+1
       </button>
+      <div>
+        <Recording
+          clickrecord={delayclickRec}
+          printrecord={memoDelay.time}
+          category={"useMemo Delay count"}
+          count={memoDelay.num}
+        />
 
-      <div>1:{memoDelay}</div>
-      <div>2:{memoNotDelay}</div>
+        <Recording
+          clickrecord={clickRec}
+          printrecord={memoNotDelay.time}
+          category={"useMemo No Delay count"}
+          count={memoNotDelay.num}
+        />
+      </div>
     </>
   );
 };

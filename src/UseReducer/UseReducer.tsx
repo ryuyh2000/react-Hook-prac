@@ -5,11 +5,6 @@ interface actionType {
   num: number;
 }
 
-const ACTION = {
-  up: "up",
-  down: "down",
-};
-
 const countReducer = (state: number, action: actionType): number => {
   if (action.type === "up") {
     return state + action.num;
