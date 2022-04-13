@@ -1,11 +1,14 @@
 import React from "react";
+import UseCallback from "../useCallback/UseCallback";
 
 const Page2 = () => {
   return (
     <>
-      <div>asdasd</div>
+      <h1>useCallback</h1>
+      <UseCallback/>
+      <hr />
     </>
   );
 };
 
-export default Page2
+export default Page2;
